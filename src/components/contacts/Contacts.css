@@ -1,0 +1,21 @@
+.contacts__container {
+    background-color: white;
+    height: 80%;
+    width: 70%;
+    margin: 'auto';
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.contacts__container>p {
+    margin: 1rem 0 1.5rem 0;
+    padding: 0;
+    color: #696969;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.list {
+    height: 85%;
+    overflow-y: scroll;
+}
