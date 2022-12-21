@@ -10,7 +10,7 @@
 
 .transparent__bg {
     background-color: rgba(0, 0, 0, .8);
-    margin-top: -2.8rem;
+    /* margin-top: -2.8rem; */
     z-index: 4;
     height: 80%;
     display: flex;
