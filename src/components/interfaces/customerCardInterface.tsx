@@ -4,4 +4,5 @@ export default interface customerCardInterface {
     number: String
     email: String
     onEditPress: any
+    onDeletePress: any
 }

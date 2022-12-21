@@ -1,8 +1,8 @@
 .card__container {
     display: flex;
-    margin-bottom: 1rem;
-    cursor: pointer;
+    margin-bottom: 1.5rem;
 }
+
 .circle {
     background-color: #D3D3D3;
     width: 4rem;
@@ -17,21 +17,56 @@
 }
 
 .right__box {
+    padding-top: .25rem;
+    display: flex;
+    width: 85%;
+    align-items: center;
+    justify-content: space-between;
     color: #696969;
-    padding-top: .25rem;
-    font-size: 1.2rem;
-    font-weight: 600;
     margin-left: 1rem;
-    /* background-color: red; */
 }
 
-.right__box>p {
-    /* padding: 0; */
+.name {
+    padding: 0;
     margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
-.phone__number {
-    font-size: 1rem;
-    font-weight: 400;
+.dot {
+    width: .5rem;
+    height: .5rem;
+    margin: 0 .5rem 0 .5rem;
+    border-radius: 10rem;
+    background-color: #696969;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
     padding-top: .25rem;
+
+}
+
+.flex>p {
+    font-size: 1rem;
+}
+
+.action__buttons>button {
+    width: 4rem;
+    height: 4rem;
+    color: white;
+    font-weight: 400;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.delete__button {
+    background-color: #98242488;
+    margin-left: 1rem
+}
+
+.edit__button {
+    background-color: #3c9a208c;
 }
