@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./SearchBar.css"
-import { MdSearch, MdAddCircleOutline, MdFilterList } from 'react-icons/md';
-function SearchBar({ value, addModalToggler, onSearch }: any) {
+import { MdSearch, MdAddCircleOutline, MdRefresh } from 'react-icons/md';
+function SearchBar({ value, addModalToggler, onSearch, onRefresh }: any) {
     // const [input, setInput] = useState(String)
     // console.log('search value', input)
     return (
@@ -10,9 +10,9 @@ function SearchBar({ value, addModalToggler, onSearch }: any) {
                 <span className="search__icon">
                     <MdSearch />
                 </span>
-                <input placeholder='Search' className="search__input" onChange={e => onSearch(e.target.value)} />
+                <input value={value} placeholder='Search' className="search__input" onChange={e => onSearch(e.target.value)} />
             </div>
-            <button className="button"> <MdFilterList /></button>
+            <button className="button" onClick={onRefresh}> <MdRefresh /></button>
             <button className="button" onClick={addModalToggler}><MdAddCircleOutline /></button>
         </div >
     )

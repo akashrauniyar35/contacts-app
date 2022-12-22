@@ -4,19 +4,19 @@
     width: 90%;
     margin: auto;
     position: relative;
-    padding: 10px 10px;
+    padding: 1rem 1rem;
     border-radius: 10px;
 }
 
 .transparent__bg {
     background-color: rgba(0, 0, 0, .8);
-    /* margin-top: -2.8rem; */
     z-index: 4;
     height: 80%;
     display: flex;
+    padding: 1rem 1rem;
     align-items: center;
-    width: 70%;
-    border-radius: 5px;
+    width: 450px;
+    border-radius: 10px;
     position: absolute;
 }
 
