@@ -5,7 +5,7 @@
 
 .circle {
     background-color: #D3D3D3;
-    width: 4rem;
+    width: 4.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@
 .right__box {
     padding-top: .25rem;
     display: flex;
-    width: 85%;
+    width: 90%;
     align-items: center;
     justify-content: space-between;
     color: #696969;
@@ -34,22 +34,23 @@
 }
 
 .dot {
-    width: .5rem;
-    height: .5rem;
-    margin: 0 .5rem 0 .5rem;
+    width: .25rem;
+    height: .25rem;
+    margin: 0 .25rem 0 .25rem;
     border-radius: 10rem;
     background-color: #696969;
 }
 
 .flex {
     display: flex;
+    width: 100%;
     align-items: center;
     padding-top: .25rem;
 
 }
 
 .flex>p {
-    font-size: 1rem;
+    font-size: .8rem;
 }
 
 .action__buttons>button {

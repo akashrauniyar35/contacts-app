@@ -1,73 +1,62 @@
 import React, { useEffect, useState } from 'react'
-import dataInterface from '../interfaces/dataInterface'
+import { dataInterface, updateContactsInterface } from '../interfaces/dataInterface'
 import SearchBar from '../searchBar/SearchBar'
 import AddContacts from './AddContacts'
 import ContactsCard from './ContactsCard'
 import './Contacts.css'
 import Spinner from '../spinner/Spinner'
 
-import { deleteContact, fetchAllContacts, postContact, updateContact } from '../config/contactServices'
 
 
+interface Props {
+    searchValue: String
+    filterData: dataInterface | undefined
+    loading: Boolean
+    getContacts: () => Promise<void>
+    addModalToggler: () => void
+    searchHandler: (value: string) => void
+    editModalToggler: (item: any) => void
+    addModalVisible: Boolean
+    onAddContactsHandler: (obj: any) => void
+    editModalVisible: Boolean
+    editObj: updateContactsInterface | undefined
+    onUpdateContactsHandler: (obj: updateContactsInterface) => void
+    onDeleteContactsHandler: (obj: any) => void
+    data: dataInterface | undefined
+}
 
-function Contacts() {
-    const [loading, setLoading] = useState(false)
-    const [addModalVisible, setAddModalVisible] = useState<Boolean>(false)
-    const [editModalVisible, setEditModalVisible] = useState<Boolean>(false)
-    const [searchValue, setSearchValue] = useState(String)
-    const [filtersVisible, setFiltersVisible] = useState<Boolean>(false)
 
-    const [data, setData] = useState([])
+function Contacts({
+    searchValue,
+    filterData,
+    loading,
+    getContacts,
+    addModalToggler,
+    searchHandler,
+    editModalToggler,
+    addModalVisible,
+    onAddContactsHandler,
+    editModalVisible,
+    editObj,
+    onUpdateContactsHandler,
+    onDeleteContactsHandler,
+    data,
 
-    const [editObj, setEditObj] = useState()
+}: Props) {
 
 
-    const addModalToggler = () => {
-        setAddModalVisible(!addModalVisible)
-        console.log("modal", addModalVisible)
-    }
-    const editModalToggler = (item: any) => {
-        setEditModalVisible(!editModalVisible)
-        setEditObj(item)
-    }
-
-    const onAddContactsHandler = (obj: any) => {
-        postContact(obj)
-        setAddModalVisible(false)
-        getContacts()
-    }
-    const onUpdateContactsHandler = (obj: any) => {
-        const id = obj.id
-        console.log("contacts update pressed", id)
-        updateContact(id, obj)
-        setEditModalVisible(false)
-        getContacts()
-    }
-    const onDeleteContactsHandler = (id: String) => {
-        deleteContact(id)
-        getContacts()
-    }
-
-    const searchHandler = (value: String) => {
-        let obj = data?.find((o: any) => o.name === value);
-        console.log('value', obj)
-    }
 
     useEffect(() => {
-        getContacts()
-    }, []);
+        searchValue === '' && getContacts()
+    }, [searchValue]);
 
-    const getContacts = async () => {
-        setLoading(true)
-        const x: any = await fetchAllContacts()
-        setData(x.docs.map((doc: any) => ({ ...doc.data(), id: doc.id })))
-        setLoading(data && false)
-    }
+
 
     return (
         <>
             <div className='contacts__container'>
-                <SearchBar value={searchValue} addModalToggler={addModalToggler} onSearch={searchHandler} />
+                
+                <SearchBar value={searchValue} addModalToggler={addModalToggler} onSearch={searchHandler} onRefresh={getContacts} />
                 <p>Contacts</p>
 
                 <div className="spinner__center">
@@ -75,13 +64,22 @@ function Contacts() {
                 </div>
 
                 <div className="list">
-                    {data.map((item: any) => {
+                    
+                    {searchValue !== '' && filterData?.length === 0 ? <p className="no__results">No results found</p> : null}
+
+                    {searchValue !== '' ? filterData?.map((item: any) => {
+
                         return (
                             <ContactsCard key={item.id} name={item.name} number={item.number} email={item.email} onEditPress={() => editModalToggler(item)} onDeletePress={() => onDeleteContactsHandler(item.id)} />
                         )
-                    })}
+                    })
+                        :
+                        data?.map((item: any) => {
+                            return (
+                                <ContactsCard key={item.id} name={item.name} number={item.number} email={item.email} onEditPress={() => editModalToggler(item)} onDeletePress={() => onDeleteContactsHandler(item.id)} />
+                            )
+                        })}
                 </div>
-
             </div>
 
             {addModalVisible && <AddContacts lable={"Add Contact"} onClose={addModalToggler} onAddContacts={onAddContactsHandler} />}

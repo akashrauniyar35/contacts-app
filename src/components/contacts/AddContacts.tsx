@@ -8,7 +8,6 @@ function AddContacts({ lable, onClose, onUpdateContacts, onAddContacts, obj, }: 
     const [addData, setAddData] = useState({ name: '', number: '', email: '' })
     const [editedData, setEditedData] = useState({ id: obj?.id, name: obj?.name, number: obj?.number, email: obj?.email })
 
-
     return (
         <>
             <div className="transparent__bg">
